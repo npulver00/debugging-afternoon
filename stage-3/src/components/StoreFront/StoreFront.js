@@ -5,13 +5,14 @@ import { addToShoppingCart, getAllProducts } from '../../redux/reducer';
 
 class StoreFront extends Component {
 
+    
     componentDidMount() {
         this.props.getAllProducts();
     }
 
     render() {
         console.log(this.props.products);
-        let productDisplay = this.props.products.map((element, index) => {
+        let productDisplay = this.props.products ? this.props.products.map((element, index) => {
             return (
                 <div className="product-container" key={index}>
                     <h2>{element.title}</h2>
@@ -22,6 +23,8 @@ class StoreFront extends Component {
                 </div>
             )
         })
+        :
+        <div>Loading...</div>
         return (
             <div className="storefront-container">
                 {productDisplay}
